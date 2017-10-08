@@ -1,0 +1,57 @@
+<% layout('layout') %>
+
+<div class="jumbotron">
+    <h2><%- clinica.nombre %></h2>
+    <h6><%- clinica.dirección %></h6>
+    <h6><%- clinica.email %></h6>
+    <h7><%- clinica.telefono %></h7>
+    <h4><b>NOTAS:</b> <%- clinica.notas %></h4>
+    <p></p>
+    <p><a class="btn btn-primary btn-lg" href='<%- "/clinica/"%><%- clinica.id %><%- "/nuevoCaso"%>' role="button">Nuevo caso</a></p>
+    <div id="statusSelector" align="right">
+        <!-- Single button -->
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Cambiar Estado (<%= clinica.estado %>) <span class="caret success"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a id="estadoTutor">Llamada del tutor</a></li>
+                <li><a id="estadoVisita">Llamada para concertar visita</a></li>
+                <li><a id="estadoRecogida">Pendiente de recogida</a></li>
+                <li><a id="estadoInsertar">Pendiente de insertar</a>
+                <li><a id="estadoRevisar">Falta revisar</a></li>
+                <li><a id="estadoCompleto">Completo</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default" id="docContainer">
+    <div class="panel-heading">
+        <h3 class="panel-title">Listado de casos</h3>
+    </div>
+    <div class="panel-body">
+
+        <div id="casos_list">
+            <ul class="list-group">
+                <% if(casos) { %>
+                <% casos.forEach(function(perro) { %>
+                <li href="#" class="list-group-item">
+                    <span class="badge casos"><a href='<%- "/clinica/"%><%- clinica.id %><%- "/"%><%- perro.id %>'>REVISAR CASO</a></span>
+                    <span class="badge editar"><a href='<%- "/clinica/editar/"%><%- clinica.id %><%- "/"%><%- perro.id %>'>EDITAR CASO</a></span>
+                    <h4 class="list-group-item-heading"><%- perro.nombre %></h4>
+                    <span class="label label-default"><%- perro.sexo %></span>
+                    &nbsp <span class="label label-default"><%- moment(perro.edad, "yyyy-mm-dd").format("DD/MM/YYYY") %></span>
+                    &nbsp <span class="label label-default"><%- "Raza: "%><%- perro.raza %></span>
+                    &nbsp <span class="label label-default"> <%- perro.peso %><%- " kg"%></span>
+                </li>
+                <% }) %>
+                <% } %>
+            </ul>
+        </div>
+
+    </div>
+
+
+</div>
+<script src="/js/estado.js"></script>

@@ -1,0 +1,24 @@
+version: '3'
+services:
+  web:
+    build: .
+    depends_on:
+     - mariadb
+    environment:
+     - DB_HOST=mariadb
+     - DB_USER=user
+     - DB_PASS=password
+     - DB_NAME=database
+     - DB_PORT=3306
+    ports:
+     - "80:3000"
+
+  mariadb:
+    image: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=database
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    expose:
+      - 3306

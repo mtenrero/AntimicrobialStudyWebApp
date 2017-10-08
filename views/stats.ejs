@@ -1,0 +1,38 @@
+<% layout('layout') %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js" crossorigin="anonymous"></script>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Estadísticas</h1>
+    <canvas id="myChart" width="500" height="400"></canvas>
+<script>
+    var dynamicColors = function() {
+        var r = Math.floor(Math.random() * 255);
+        var g = Math.floor(Math.random() * 255);
+        var b = Math.floor(Math.random() * 255);
+        return "rgb(" + r + "," + g + "," + b + ")";
+    }
+
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ["Acido fusidico","Amoxicilina","Amoxicilina Clavulanico","Ampicilina","Azitromicina","Bencilpenicilina procaina + Dihidroestreptomicina","Cefalexina","Cefovecina","CEFQUINOMA","Ciprofloxacino","Clindamicina","Doxiciclina","Enrofloxacino","FORMILSULFATIAZOL / DIHIDROESTREPTOMICINA / NEOMICINA","Gentamicina","GRAMICIDINA","MARBOFLOXACINO","Metronidazol","Metronidazol Espiramicina","Mupirocina","Neomicina","Polimixina B","POLIMIXINA B / NEOMICINA","Sulfadoxina Trimetoprim","Terbinafina Florfenicol","Tilosina","Tobramicina"],
+            datasets: [{
+                label: '# of ABs',
+                fillColor: dynamicColors(),
+                strokeColor: dynamicColors(),
+                pointColor: dynamicColors(),
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: dynamicColors(),
+                data: <%= JSON.stringify(stats.datasets[0].data) %>
+            }],
+        },
+    });
+</script>
+  </body>
+</html>

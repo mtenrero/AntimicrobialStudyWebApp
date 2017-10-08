@@ -1,0 +1,643 @@
+<% layout('layout') %>
+<link href="/stylesheets/form.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.es.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/localization/messages_ES.js"></script>
+<script src="/js/newCaso.js"></script>
+
+<form id="docContainer" method="POST" action='<%- "/clinica/" %> <%- clinica.id %> <%- "/nuevoCaso" %>'
+      class="fb-toplabel fb-100-item-column fb-large selected-object form-normal"
+      style="background-color: rgb(207, 241, 252); border-style: ridge; border-width: 6px;" data-boxshadow="true">
+    <input type="hidden" value='<%- startTime %>' name="startTime"/>
+    <div id="fb-form-header1" class="fb-form-header" style="min-height: 0px;">
+        <a id="fb-link-logo1" class="fb-link-logo" target="_blank"><img alt="Alternative text" title="Alternative text"
+                                                                        id="fb-logo1" class="fb-logo"
+                                                                        src="common/images/image_default.png"
+                                                                        style="display:none"/></a>
+    </div>
+    <div id="section1" class="section">
+        <div id="column1" class="column ui-sortable">
+            <div id="item1" class="fb-item fb-100-item-column">
+                <div class="fb-header">
+                    <h2 style="display: inline;">
+                        Datos de la cl&iacute;nica
+                    </h2>
+                </div>
+            </div>
+            <div id="item3" class="fb-item fb-50-item-column">
+                <div class="fb-grouplabel">
+                    <label id="item3_label_0">ZIP</label>
+                </div>
+                <div class="fb-input-box">
+                    <input type="text" id="item3_text_1" maxlength="254" placeholder="" autocomplete="off"
+                           data-hint="" name="clinica_nombre" disabled value="<%= typeof clinica!='undefined' ? clinica.nombre : '' %>"/>
+                </div>
+            </div>
+            <div id="item4" class="fb-item fb-50-item-column">
+                <div class="fb-grouplabel">
+                    <label id="item4_label_0" style="display: inline;">Perro n&ordm;</label>
+                </div>
+                <div class="fb-input-box">
+                    <input type="text" id="item4_text_1" maxlength="254" placeholder="" autocomplete="off"
+                           data-hint="" name="n_caso" disabled/>
+                </div>
+            </div>
+            <div id="item5" class="fb-item">
+                <div class="fb-sectionbreak">
+                    <hr style="max-width: 960px;">
+                </div>
+            </div>
+            <div id="item6" class="fb-item">
+                <div class="fb-sectionbreak">
+                    <hr style="max-width: 960px;">
+                </div>
+            </div>
+            <div id="item8" class="fb-item fb-100-item-column">
+                <div class="fb-header">
+                    <h2>
+                        Datos del perro
+                    </h2>
+                </div>
+            </div>
+            <div id="item10" class="fb-item fb-50-item-column">
+                <div class="fb-grouplabel">
+                    <label id="item10_label_0" style="display: inline;">Nombre</label>
+                </div>
+                <div class="fb-input-box">
+                    <input type="text" id="item10_text_1" maxlength="254" placeholder="" autocomplete="off"
+                           data-hint="" name="perro_nombre" required value="<%= typeof perro!='undefined' ? perro.nombre : '' %>"/>
+                </div>
+            </div>
+            <div id="item11" class="fb-item fb-50-item-column">
+                <div class="fb-grouplabel">
+                    <label id="item11_label_0" style="display: inline;">Raza</label>
+                </div>
+                <div class="fb-input-box">
+                    <input type="text" id="item11_text_1" maxlength="254" placeholder="" autocomplete="on"
+                           data-hint="" name="perro_raza" required value="<%= typeof perro!='undefined' ? perro.raza : '' %>"/>
+                </div>
+            </div>
+            <div id="item12" class="fb-item fb-100-item-column fb-two-column">
+                <div class="fb-grouplabel">
+                    <label id="item12_label_0" style="display: inline;">Sexo</label>
+                </div>
+                <div class="fb-radio">
+                    <label id="item12_0_label"><input type="radio" required id="item12_0_radio" data-hint="" name="perro_sexo"
+                                                      value="macho" <%= typeof perro!='undefined' && perro.sexo == 'macho' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                   id="item12_0_span">Macho</span></label>
+                    <label id="item12_1_label"><input type="radio" id="item12_1_radio" required name="perro_sexo"
+                                                      value="hembra" <%= typeof perro!='undefined' && perro.sexo == 'hembra' ? 'checked' : '' %>/><span class="fb-fieldlabel" id="item12_1_span">Hembra</span></label>
+                </div>
+            </div>
+            <div id="item13" class="fb-item fb-33-item-column">
+                <div class="fb-grouplabel">
+                    <label id="item13_label_0" style="display: inline;">Fecha Nacimiento</label>
+                </div>
+                <div class="fb-input-box">
+                    <input type="text" id="perro_nacimiento" maxlength="254" placeholder="" autocomplete="off"
+                           data-hint="" name="perro_nacimiento" required value="<%= typeof perro!='undefined' ? moment(perro.edad, "yyyy-mm-dd").format("DD/MM/YYYY") : '' %>"/>
+                </div>
+            </div>
+            <div id="item14" class="fb-item fb-33-item-column">
+                <div class="fb-grouplabel">
+                    <label id="item14_label_0" style="display: inline;">Peso</label>
+                </div>
+                <div class="fb-input-box">
+                    <input type="text" id="item14_text_1" maxlength="254" placeholder="" autocomplete="off"
+                           data-hint="" name="perro_peso" required value="<%= typeof perro!='undefined' ? perro.peso : '' %>"/>
+                </div>
+            </div>
+            <div id="item15" class="fb-item fb-33-item-column" style="opacity: 1; z-index: 0;">
+                <div class="fb-grouplabel">
+                    <label id="item15_label_0" style="display: inline;">Fecha consulta</label>
+                </div>
+                <div class="fb-input-box">
+                    <input type="text" id="perro_consulta" maxlength="254" placeholder="" autocomplete="on"
+                           data-hint="" name="perro_consulta" required value="<%= typeof diagnostico!='undefined' ? moment(diagnostico.fecha_visita, "yyyy-mm-dd").format("DD/MM/YYYY") : '' %>" />
+                </div>
+            </div>
+            <div id="item16" class="fb-item">
+                <div class="fb-sectionbreak">
+                    <hr style="max-width: 960px;">
+                </div>
+            </div>
+            <div id="item17" class="fb-item">
+                <div class="fb-sectionbreak">
+                    <hr style="max-width: 960px;">
+                </div>
+            </div>
+            <div id="item18" class="fb-item fb-100-item-column">
+                <div class="fb-header">
+                    <h2 style="display: inline;">
+                        Diagn&oacute;stico
+                    </h2>
+                </div>
+            </div>
+            <div id="item21" class="fb-item fb-100-item-column fb-two-column">
+                <div class="fb-grouplabel">
+                    <label id="item21_label_0">Contexto de atenci&oacute;n</label>
+                </div>
+                <div class="fb-radio">
+                    <label id="item21_0_label"><input type="radio" id="item21_0_radio" data-hint="" name="cxt_atencion"
+                                                      checked value="consulta" <%= typeof diagnostico!='undefined' && diagnostico.cxt_atencion == 'consulta' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                      id="item21_0_span">Consulta</span></label>
+                    <label id="item21_1_label"><input type="radio" id="item21_1_radio" name="cxt_atencion"
+                                                      value="qx" <%= typeof diagnostico!='undefined' && diagnostico.cxt_atencion == 'qx' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                        id="item21_1_span">Qx</span></label>
+                    <label id="item21_2_label"><input type="radio" id="item21_2_radio" name="cxt_atencion"
+                                                      value="preqx" <%= typeof diagnostico!='undefined' && diagnostico.cxt_atencion == 'preqx' ? 'checked' : '' %>/><span class="fb-fieldlabel" id="item21_2_span">Pre Qx</span></label>
+                    <label id="item21_3_label"><input type="radio" name="cxt_atencion" id="item21_3_radio"
+                                                      value="postqx" <%= typeof diagnostico!='undefined' && diagnostico.cxt_atencion == 'postqx' ? 'checked' : '' %>/><span class="fb-fieldlabel" id="item21_3_span">Post Qx</span></label>
+                </div>
+            </div>
+            <div id="item22" class="fb-item fb-100-item-column fb-two-column">
+                <div class="fb-grouplabel">
+                    <label id="item22_label_0">Sintomatolog&iacute;a</label>
+                </div>
+                <div class="fb-radio">
+                    <label id="item22_0_label"><input type="radio" id="item22_0_radio" data-hint=""
+                                                      name="sintomatologia" required value="respiratorio"<%= typeof diagnostico!='undefined' && diagnostico.sintomatologia == 'respiratorio' ? 'checked' : '' %>/><span
+                                class="fb-fieldlabel" id="item22_0_span">Respiratorio</span></label>
+                    <label id="item22_1_label"><input type="radio" id="item22_1_radio" name="sintomatologia"
+                                                      value="piel" <%= typeof diagnostico!='undefined' && diagnostico.sintomatologia == 'piel' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                          id="item22_1_span">Piel</span></label>
+                    <label id="item22_2_label"><input type="radio" id="item22_2_radio" name="sintomatologia"
+                                                      value="digestivo" <%= typeof diagnostico!='undefined' && diagnostico.sintomatologia == 'digestivo' ? 'checked' : '' %>/><span class="fb-fieldlabel" id="item22_2_span">Digestivo</span></label>
+                    <label id="item22_3_label"><input type="radio" name="sintomatologia" id="item22_3_radio"
+                                                      value="urinario" <%= typeof diagnostico!='undefined' && diagnostico.sintomatologia == 'urinario' ? 'checked' : '' %>/><span class="fb-fieldlabel" id="item22_3_span">Urinario</span></label>
+                    <label id="item22_4_label"><input type="radio" name="sintomatologia" id="item22_4_radio"
+                                                      value="oido" <%= typeof diagnostico!='undefined' && diagnostico.sintomatologia == 'oido' ? 'checked' : '' %>/><span class="fb-fieldlabel" id="item22_4_span">O&iacute;do</span></label>
+                    <label id="item22_5_label"><input type="radio" name="sintomatologia" id="item22_5_radio"
+                                                      value="oftalmo" <%= typeof diagnostico!='undefined' && diagnostico.sintomatologia == 'oftalmo' ? 'checked' : '' %>/><span class="fb-fieldlabel" id="item22_5_span">Oftalmolog&iacute;a</span></label>
+                    <label id="item22_6_label"><input type="radio" name="sintomatologia" id="item22_6_radio"
+                                                      value="trauma" <%= typeof diagnostico!='undefined' && diagnostico.sintomatologia == 'trauma' ? 'checked' : '' %>/><span class="fb-fieldlabel" id="item22_6_span">Trauma</span></label>
+                    <label id="item22_7_label"><input type="radio" name="sintomatologia" id="item22_6_radio"
+                                                      value="otros" <%= typeof diagnostico!='undefined' && diagnostico.sintomatologia == 'otros' ? 'checked' : '' %>/><span class="fb-fieldlabel" id="item22_6_span">Otros</span></label>
+                </div>
+            </div>
+            <div id="item23" class="fb-item fb-100-item-column">
+                <div class="fb-grouplabel">
+                    <label id="item23_label_0">Diagn&oacute;stico</label>
+                </div>
+                <div class="fb-textarea">
+				<textarea style="resize: none; max-width: 960px; height: 50px;" id="item23_textarea_1"
+                          maxlength="10000" placeholder="" data-hint="" name="diag"><%= typeof diagnostico!='undefined' ? diagnostico.diagnostico : '' %></textarea>
+                </div>
+            </div>
+            <div id="item69" class="fb-item fb-33-item-column fb-one-column">
+                <div class="fb-grouplabel">
+                    <label id="item69_label_0" style="display: inline;">Cultivo</label>
+                </div>
+                <div class="fb-radio">
+                    <label id="item69_0_label"><input type="radio" id="item69_0_radio" data-hint="" name="cultivo" required value="1" <%= typeof diagnostico!='undefined' && diagnostico.cultivo == 1 ? 'checked' : '' %>/><span class="fb-fieldlabel" id="item69_0_span">SI</span></label>
+                    <label id="item69_1_label"><input type="radio" id="item69_1_radio" name="cultivo" value="0" <%= typeof diagnostico!='undefined' && diagnostico.cultivo == 0 ? 'checked' : '' %> /><span class="fb-fieldlabel" id="item69_1_span">NO</span></label>
+                </div>
+            </div>
+            <div id="item70" class="fb-item fb-33-item-column fb-one-column" style="opacity: 1;">
+                <div class="fb-grouplabel">
+                    <label id="item70_label_0" style="display: inline;">Antibiograma</label>
+                </div>
+                <div class="fb-radio">
+                    <label id="item70_0_label"><input type="radio" id="item70_0_radio" data-hint="" name="antibiograma" required value="1" <%= typeof diagnostico!='undefined' && diagnostico.abiograma == 1 ? 'checked' : '' %>/><span class="fb-fieldlabel" id="item70_0_span">SI</span></label>
+                    <label id="item70_1_label"><input type="radio" id="item70_1_radio" name="antibiograma" value="0" <%= typeof diagnostico!='undefined' && diagnostico.abiograma == 0 ? 'checked' : '' %>/><span class="fb-fieldlabel" id="item70_1_span">NO</span></label>
+                </div>
+            </div>
+            <div id="item71" class="fb-item fb-33-item-column fb-one-column">
+                <div class="fb-grouplabel">
+                    <label id="item71_label_0" style="display: inline;">Fiebre (indicar debajo)</label>
+                </div>
+                <div class="fb-radio">
+                    <label id="item71_0_label"><input type="radio" id="item71_0_radio" data-hint="" name="fiebre" required value="1" <%= typeof diagnostico!='undefined' && diagnostico.fiebre == 1 ? 'checked' : '' %>/><span class="fb-fieldlabel" id="item71_0_span">SI</span></label>
+                    <label id="item71_1_label"><input type="radio" id="item71_1_radio" name="fiebre" value="0" <%= typeof diagnostico!='undefined' && diagnostico.fiebre == 0 ? 'checked' : '' %>/><span class="fb-fieldlabel" id="item71_1_span">NO</span></label>
+                </div>
+            </div>
+            <div id="item28" class="fb-item fb-100-item-column">
+                <div class="fb-grouplabel">
+                    <label id="item28_label_0">Otras pruebas / Detalles antibiograma o cultivo</label>
+                </div>
+                <div class="fb-textarea">
+				<textarea style="resize: none; max-width: 960px; height: 50px;" id="item28_textarea_1"
+                          maxlength="10000" placeholder="" data-hint="" name="otras_pruebas" ><%= typeof diagnostico!='undefined' ? diagnostico.otras_pruebas : '' %></textarea>
+                </div>
+            </div>
+            <div id="item29" class="fb-item">
+                <div class="fb-sectionbreak">
+                    <hr style="max-width: 960px;">
+                </div>
+            </div>
+            <div id="item30" class="fb-item">
+                <div class="fb-sectionbreak">
+                    <hr style="max-width: 960px;">
+                </div>
+            </div>
+            <div id="item31" class="fb-item fb-100-item-column">
+                <div class="fb-header">
+                    <h2 style="display: inline;">
+                        Tratamiento
+                    </h2>
+                </div>
+            </div>
+            <div id="tratamientos">
+                <div id="item32" class="fb-item fb-100-item-column fb-three-column">
+                    <div class="fb-grouplabel">
+                        <label id="item32_label_0" style="display: inline;">Cantidad de antibi&oacute;ticos</label>
+                    </div>
+                    <div class="fb-radio">
+                        <label id="item32_0_label"><input type="radio" id="item32_0_radio" data-hint=""
+                                                          name="n_antibioticos" checked value="1" <%= typeof tratamientos !='undefined' && tratamientos.length == 1 ? 'checked' : '' %>/><span
+                                    class="fb-fieldlabel" id="item32_0_span">1</span></label>
+                        <label id="item32_1_label"><input type="radio" id="item32_1_radio" name="n_antibioticos"
+                                                          value="2" <%= typeof tratamientos !='undefined' && tratamientos.length == 2 ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                           id="item32_1_span">2</span></label>
+                        <label id="item32_2_label"><input type="radio" id="item32_2_radio" name="n_antibioticos"
+                                                          value="3" <%= typeof tratamientos !='undefined' && tratamientos.length == 3 ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                           id="item32_2_span">3</span></label>
+                        <label id="item32_3_label"><input type="radio" name="n_antibioticos" id="item32_3_radio"
+                                                          value="4" <%= typeof tratamientos !='undefined' && tratamientos.length == 4 ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                           id="item32_3_span">4</span></label>
+                        <label id="item32_4_label"><input type="radio" name="n_antibioticos" id="item32_4_radio"
+                                                          value="5" <%= typeof tratamientos !='undefined' && tratamientos.length == 5 ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                           id="item32_4_span">5</span></label>
+                        <label id="item32_5_label"><input type="radio" name="n_antibioticos" id="item32_5_radio"
+                                                          value="6" <%= typeof tratamientos !='undefined' && tratamientos.length == 6 ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                           id="item32_5_span">6</span></label>
+                    </div>
+                </div>
+                <div id="item37" class="fb-item">
+                    <div class="fb-sectionbreak">
+                        <hr style="max-width: 960px;">
+                    </div>
+                </div>
+                <% for (var num = 1; num < 7 ; num++) { %>
+                <div id="tratamiento<%=num%>" hidden>
+                    <h4><b>Tratamiento</b></h4>
+                    <div id="item33" class="fb-item fb-100-item-column fb-two-column">
+                        <div class="fb-grouplabel">
+                            <label id="item33_label_0" style="display: inline;">Naturaleza del tratamiento</label>
+                        </div>
+                        <div class="fb-radio">
+                            <label id="item33_0_label"><input type="radio" checked id="item33_0_radio" data-hint=""
+                                                              name="naturaleza<%=num%>" value="nuevo" <%= typeof tratamientos !='undefined' && tratamientos[num] == 'nuevo' ? 'checked' : '' %>/><span
+                                        class="fb-fieldlabel"
+                                        id="item33_0_span">Nuevo tratamiento</span></label>
+                            <label id="item33_1_label"><input type="radio" id="item33_1_radio" name="naturaleza<%=num%>"
+                                                              value="cambio" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].naturaleza == 'cambio' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                    id="item33_1_span">Cambio de tratamiento</span></label>
+                        </div>
+                    </div>
+                    <div id="item36" class="fb-item">
+                        <div class="fb-sectionbreak">
+                            <hr style="max-width: 960px;">
+                        </div>
+                    </div>
+                    <div id="item34" class="fb-item fb-100-item-column fb-three-column">
+                        <div class="fb-grouplabel">
+                            <label id="item34_label_0" style="display: inline;">Dispensaci&oacute;n</label>
+                        </div>
+                        <div class="fb-radio">
+                            <label id="item34_0_label"><input type="radio" id="item34_0_radio" data-hint=""
+                                                              name="dispensacion<%=num%>" required value="clinica" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].dispensacion == 'clinica' ? 'checked' : '' %>/><span
+                                        class="fb-fieldlabel" id="item34_0_span">Cl&iacute;nica</span></label>
+                            <label id="item34_1_label"><input type="radio" id="item34_1_radio" name="dispensacion<%=num%>"
+                                                              value="farmaciaOficial" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined'  && tratamientos[num].dispensacion == 'farmaciaOficial' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                             id="item34_1_span">Farmacia: receta oficial</span></label>
+                            <label id="item34_2_label"><input type="radio" name="dispensacion<%=num%>" id="item34_2_radio"
+                                                              value="farmaciaOtra" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined'  && tratamientos[num].dispensacion == 'farmaciaOtra' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                          id="item34_2_span">Farmacia: receta propia</span></label>
+                        </div>
+                    </div>
+                    <div id="item35" class="fb-item">
+                        <div class="fb-sectionbreak">
+                            <hr style="max-width: 960px;">
+                        </div>
+                    </div>
+                    <div id="item39" class="fb-item fb-two-column fb-50-item-column">
+                        <div class="fb-grouplabel">
+                            <label id="item39_label_0" style="display: inline;">Administraci&oacute;n</label>
+                        </div>
+                        <div class="fb-radio">
+                            <label id="item39_0_label"><input type="radio" id="item39_0_radio" data-hint=""
+                                                              name="administracion<%=num%>" required value="clinica" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined'  && tratamientos[num].administracion == 'clinica' ? 'checked' : '' %>/><span
+                                        class="fb-fieldlabel" id="item39_0_span">Cl&iacute;nica</span></label>
+                            <label id="item39_1_label"><input type="radio" id="item39_1_radio" name="administracion<%=num%>"
+                                                              value="casa" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined'  && tratamientos[num].administracion == 'casa' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                  id="item39_1_span">Casa, por el due&ntilde;o</span></label>
+                        </div>
+                    </div>
+                    <div id="item42" class="fb-item fb-two-column fb-50-item-column" style="opacity: 1;">
+                        <div class="fb-grouplabel">
+                            <label id="item42_label_0" style="display: inline;">Tipo de tratamiento</label>
+                        </div>
+                        <div class="fb-radio">
+                            <label id="item42_0_label"><input type="radio" id="item42_0_radio" data-hint=""
+                                                              name="antibiotico_tipo<%=num%>" required
+                                                              value="sistemico" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined'  && tratamientos[num].tipo == 'sistemico' ? 'checked' : '' %>/><span
+                                        class="fb-fieldlabel" id="item42_0_span">Sist&eacute;mico</span></label>
+                            <label id="item42_1_label"><input type="radio" id="item42_1_radio" name="antibiotico_tipo<%=num%>"
+                                                              value="topico" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined'  && tratamientos[num].tipo == 'topico' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                    id="item42_1_span">T&oacute;pico</span></label>
+                        </div>
+                    </div>
+                    <div id="item40" class="fb-item">
+                        <div class="fb-sectionbreak">
+                            <hr style="max-width: 960px;">
+                        </div>
+                    </div>
+                    <div id="item46" class="fb-item fb-100-item-column fb-two-column">
+                        <div class="fb-grouplabel">
+                            <label id="item46_label_0" style="display: inline;">Tipo de receta emitida:</label>
+                        </div>
+                        <div class="fb-radio">
+                            <label id="item46_0_label"><input type="radio" id="item46_0_radio" data-hint=""
+                                                              name="tipo_receta_emitida<%=num%>" value="p_activo" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined'  && tratamientos[num].tipo_receta_emitida == 'p_activo' ? 'checked' : '' %>/><span
+                                        class="fb-fieldlabel" id="item46_0_span">Principio activo</span></label>
+                            <label id="item46_1_label"><input type="radio" id="item46_1_radio"
+                                                              name="tipo_receta_emitida<%=num%>"
+                                                              value="n_comercial" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].tipo_receta_emitida == 'n_comercial' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                         id="item46_1_span">Nombre comercial</span></label>
+                        </div>
+                    </div>
+                    <div id="item43" class="fb-item fb-50-item-column">
+                        <div class="fb-grouplabel">
+                            <label id="item43_label_0" style="display: inline;">Principio activo</label>
+                        </div>
+                        <div class="fb-input-box">
+                            <input type="text" id="item43_text_1" maxlength="254" placeholder="" autocomplete="off"
+                                   data-hint="" name="antibiotico_principioact<%=num%>" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' ? 'value="' + tratamientos[num].pactivo + '"' : '' %>/>
+                        </div>
+                    </div>
+                    <div id="item45" class="fb-item fb-50-item-column" style="opacity: 1;">
+                        <div class="fb-grouplabel">
+                            <label id="item45_label_0" style="display: inline;">Nombre comercial</label>
+                        </div>
+                        <div class="fb-input-box">
+                            <input type="text" id="item45_text_1" maxlength="254" placeholder="" autocomplete="off"
+                                   data-hint="" name="antibiotico_ncomercial<%=num%>" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' ? 'value="' + tratamientos[num].ncomercial + '"' : '' %>/>
+                        </div>
+                    </div>
+                    <div id="item48" class="fb-item fb-100-item-column fb-two-column">
+                        <div class="fb-grouplabel">
+                            <label id="item48_label_0" style="display: none;"></label>
+                        </div>
+                        <div class="fb-radio">
+                            <label id="item48_0_label"><input type="radio" id="item48_0_radio" data-hint=""
+                                                              name="antibiotico_origen<%=num%>" required value="humana" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].procedencia == 'humana' ? 'checked' : '' %>/><span
+                                        class="fb-fieldlabel" id="item48_0_span">Humana</span></label>
+                            <label id="item48_1_label"><input type="radio" id="item48_1_radio"
+                                                              name="antibiotico_origen<%=num%>"
+                                                              value="veterinaria" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].procedencia == 'oral' ? 'veterinaria' : '' %>/><span class="fb-fieldlabel"
+                                                                                         id="item48_1_span">Veterinaria</span></label>
+                        </div>
+                    </div>
+                    <div id="item49" class="fb-item">
+                        <div class="fb-sectionbreak">
+                            <hr style="max-width: 960px;">
+                        </div>
+                    </div>
+                    <div id="item50" class="fb-item fb-three-column fb-100-item-column">
+                        <div class="fb-grouplabel">
+                            <label id="item50_label_0" style="display: inline;">V&iacute;a de
+                                administraci&oacute;n</label>
+                        </div>
+                        <div class="fb-radio">
+                            <label id="item50_0_label"><input type="radio" id="item50_0_radio" data-hint=""
+                                                              name="antibiotico_viadmin<%=num%>" required value="oral" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'oral' ? 'checked' : '' %>/><span
+                                        class="fb-fieldlabel" id="item50_0_span">Oral</span></label>
+                            <label id="item50_1_label"><input type="radio" id="item50_1_radio"
+                                                              name="antibiotico_viadmin<%=num%>"
+                                                              value="sc" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'sc' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                id="item50_1_span">SC</span></label>
+                            <label id="item50_2_label"><input type="radio" id="item50_2_radio"
+                                                              name="antibiotico_viadmin<%=num%>"
+                                                              value="iv" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'iv' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                id="item50_2_span">IV</span></label>
+                            <label id="item50_3_label"><input type="radio" name="antibiotico_viadmin<%=num%>"
+                                                              id="item50_3_radio"
+                                                              value="im" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'im' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                id="item50_3_span">IM</span></label>
+                            <label id="item50_4_label"><input type="radio" name="antibiotico_viadmin<%=num%>"
+                                                              id="item50_4_radio"
+                                                              value="nasal" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'nasal' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                   id="item50_4_span">Nasal</span></label>
+                            <label id="item50_5_label"><input type="radio" name="antibiotico_viadmin<%=num%>"
+                                                              id="item50_5_radio"
+                                                              value="cutanea" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'cutanea' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                     id="item50_5_span">Cut&aacute;nea</span></label>
+                            <label id="item50_6_label"><input type="radio" name="antibiotico_viadmin<%=num%>"
+                                                              id="item50_6_radio"
+                                                              value="intraconjuntival" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'intraconjuntival' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                              id="item50_6_span">Intraconjuntival</span></label>
+                            <label id="item50_7_label"><input type="radio" name="antibiotico_viadmin<%=num%>"
+                                                              id="item50_7_radio"
+                                                              value="vaginal" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'vaginal' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                     id="item50_7_span">Vaginal</span></label>
+                            <label id="item50_8_label"><input type="radio" name="antibiotico_viadmin<%=num%>"
+                                                              id="item50_8_radio"
+                                                              value="otica" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'otica' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                   id="item50_8_span">&Oacute;tica</span></label>
+                            <label id="item50_9_label"><input type="radio" name="antibiotico_viadmin<%=num%>"
+                                                              id="item50_9_radio"
+                                                              value="sublingual" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'sublingual' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                        id="item50_9_span">Sublingual</span></label>
+                            <label id="item50_10_label"><input type="radio" name="antibiotico_viadmin<%=num%>"
+                                                               id="item50_10_radio" value="rectal" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'rectal' ? 'checked' : '' %>/><span
+                                        class="fb-fieldlabel" id="item50_10_span">Rectal</span></label>
+                            <label id="item50_11_label"><input type="radio" name="antibiotico_viadmin<%=num%>"
+                                                               id="item50_11_radio" value="ocular" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'ocular' ? 'checked' : '' %>/><span
+                                        class="fb-fieldlabel" id="item50_11_span">Ocular</span></label>
+                            <label id="item50_12_label"><input type="radio" name="antibiotico_viadmin<%=num%>"
+                                                               id="item50_12_radio" value="percutanea" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'percutanea' ? 'checked' : '' %>/><span
+                                        class="fb-fieldlabel"
+                                        id="item50_12_span">Percut&aacute;nea / Transd&eacute;rmica</span></label>
+                            <label id="item50_13_label"><input type="radio" name="antibiotico_viadmin<%=num%>"
+                                                               id="item50_13_radio" value="intrarraquidea" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'intrarraquidea' ? 'checked' : '' %>/><span
+                                        class="fb-fieldlabel" id="item50_13_span">Intrarrqu&iacute;dea</span></label>
+                            <label id="item50_14_label"><input type="radio" name="antibiotico_viadmin<%=num%>"
+                                                               id="item50_14_radio" value="intrarticular" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'intrarticular' ? 'checked' : '' %>/><span
+                                        class="fb-fieldlabel" id="item50_14_span">Intrarticular</span></label>
+                            <label id="item50_15_label"><input type="radio" name="antibiotico_viadmin<%=num%>"
+                                                               id="item50_15_radio" value="intramamaria" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'intramamaria' ? 'checked' : '' %>/><span
+                                        class="fb-fieldlabel" id="item50_15_span">Intramamaria</span></label>
+                            <label id="item50_16_label"><input type="radio" name="antibiotico_viadmin<%=num%>"
+                                                               id="item50_16_radio" value="intracardiaca" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'intracardiaca' ? 'checked' : '' %>/><span
+                                        class="fb-fieldlabel" id="item50_16_span">Intracardiaca</span></label>
+                            <label id="item50_17_label"><input type="radio" name="antibiotico_viadmin<%=num%>"
+                                                               id="item50_17_radio" value="otros" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].via == 'otros' ? 'checked' : '' %>/><span
+                                        class="fb-fieldlabel" id="item50_17_span">Otra</span></label>
+                        </div>
+                    </div>
+                    <div id="item51" class="fb-item">
+                        <div class="fb-sectionbreak">
+                            <hr style="max-width: 960px;">
+                        </div>
+                    </div>
+                    <div id="item68" class="fb-item fb-20-item-column">
+                        <div class="fb-grouplabel">
+                            <label id="item68_label_0" style="display: inline;">cantidad</label>
+                        </div>
+                        <div class="fb-input-number">
+                            <input type="number" id="item68_number_1" autocomplete="off" min="0" max="99999"
+                                   data-hint="" name="antibiotico_prep<%=num%>" required value="<%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' ? tratamientos[num].posologia : '' %>"/>
+                        </div>
+                    </div>
+                    <div id="item54" class="fb-item fb-25-item-column">
+                        <div class="fb-grouplabel">
+                            <label id="item54_label_0" style="display: inline;">presentaci&oacute;n</label>
+                        </div>
+                        <div class="fb-dropdown">
+                            <select id="item54_select_1" data-hint="" name="antibiotico_unidprep<%=num%>">
+                                <option id="item54_0_option" selected value="comprimidos" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].presentacion == 'comprimidos' ? 'selected' : '' %>>
+                                    Comprimidos
+                                </option>
+                                <option id="item54_1_option" value="gotas" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].unidades == 'gotas' ? 'selected' : '' %>>
+                                    Gotas
+                                </option>
+                                <option id="item54_2_option" value="ml" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].unidades == 'ml' ? 'selected' : '' %>>
+                                    ml
+                                </option>
+                                <option id="item54_2_option" value="aplicaciones" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].unidades == 'aplicaciones' ? 'selected' : '' %>>
+                                    Aplicaciones
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="item56" class="fb-item fb-25-item-column">
+                        <div class="fb-grouplabel">
+                            <label id="item56_label_0" style="display: inline;">cada</label>
+                        </div>
+                        <div class="fb-dropdown">
+                            <select id="item56_select_1" data-hint="" name="antibiotico_repeticiones<%=num%>"
+                                    required>
+                                <option selected id="item56_0_option" value="">
+                                    Choose one
+                                </option>
+                                <option id="item56_1_option" value="6h" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].repeticiones == '6h' ? 'selected' : '' %>>
+                                    6h
+                                </option>
+                                <option id="item56_1_option" value="8h" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].repeticiones == '8h' ? 'selected' : '' %>>
+                                    8h
+                                </option>
+                                <option id="item56_2_option" value="12h" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].repeticiones == '12h' ? 'selected' : '' %>>
+                                    12h
+                                </option>
+                                <option id="item56_3_option" value="24h" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].repeticiones == '24h' ? 'selected' : '' %>>
+                                    24h
+                                </option>
+                                <option id="item56_4_option" value="48h" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].repeticiones == '48h' ? 'selected' : '' %>>
+                                    48h
+                                </option>
+                                <option id="item56_5_option" value="unica" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].repeticiones == 'unica' ? 'selected' : '' %>>
+                                    Una sola aplicaci&oacute;n
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="item58" class="fb-item fb-33-item-column">
+                        <div class="fb-grouplabel">
+                            <label id="item58_label_0" style="display: inline;">durante</label>
+                        </div>
+                        <div class="fb-input-box">
+                            <input type="text" id="item58_text_1" maxlength="254" placeholder="" autocomplete="off"
+                                   data-hint="" name="duracion<%=num%>" required value="<%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' ? tratamientos[num].duracion : '' %>"/>
+                        </div>
+                    </div>
+                    <div id="item67" class="fb-item fb-50-item-column">
+                        <div class="fb-grouplabel">
+                            <label id="item67_label_0" style="display: inline;">cantidad mg/kg</label>
+                        </div>
+                        <div class="fb-input-number">
+                            <input type="number" id="item67_number_1" autocomplete="off" min="0" max="99999"
+                                   data-hint="" name="antibiotico_mgkg<%=num%>" value="<%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' ? tratamientos[num].cantidad_mgkg : '' %>"/>
+                        </div>
+                    </div>
+                    <div id="item59" class="fb-item">
+                        <div class="fb-sectionbreak">
+                            <hr style="max-width: 960px;">
+                        </div>
+                    </div>
+                    <div id="item60" class="fb-item fb-three-column fb-100-item-column">
+                        <div class="fb-grouplabel">
+                            <label id="item60_label_0">Presentaci&oacute;n</label>
+                        </div>
+                        <div class="fb-radio">
+                            <label id="item60_0_label"><input type="radio" id="item60_0_radio" data-hint=""
+                                                              name="antibiotico_pres<%=num%>" required
+                                                              value="comprimido" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].presentacion == 'comprimido' ? 'checked' : '' %>/><span
+                                        class="fb-fieldlabel" id="item60_0_span">Comprimido</span></label>
+                            <label id="item60_1_label"><input type="radio" id="item60_1_radio" name="antibiotico_pres<%=num%>"
+                                                              value="capsula" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].presentacion == 'capsula' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                     id="item60_1_span">C&aacute;psula</span></label>
+                            <label id="item60_2_label"><input type="radio" id="item60_2_radio" name="antibiotico_pres<%=num%>"
+                                                              value="solucion" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].presentacion == 'solucion' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                      id="item60_2_span">Soluci&oacute;n</span></label>
+                            <label id="item60_3_label"><input type="radio" name="antibiotico_pres<%=num%>" id="item60_3_radio"
+                                                              value="emulsion" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].presentacion == 'emulsion' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                      id="item60_3_span">Emulsi&oacute;n</span></label>
+                            <label id="item60_4_label"><input type="radio" name="antibiotico_pres<%=num%>" id="item60_4_radio"
+                                                              value="suspension" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].presentacion == 'suspension' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                        id="item60_4_span">Suspensi&oacute;n</span></label>
+                            <label id="item60_5_label"><input type="radio" name="antibiotico_pres<%=num%>" id="item60_5_radio"
+                                                              value="emulsion_oleoacuosa" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].presentacion == 'emulsion_oleoacuosa' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                                 id="item60_5_span">Emulsi&oacute;n oleoacuosa</span></label>
+                            <label id="item60_6_label"><input type="radio" name="antibiotico_pres<%=num%>" id="item60_6_radio"
+                                                              value="c_efervescente" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].presentacion == 'c_efervescente' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                            id="item60_6_span">Comprimido efervescente</span></label>
+                            <label id="item60_7_label"><input type="radio" name="antibiotico_pres<%=num%>" id="item60_7_radio"
+                                                              value="tableta" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].presentacion == 'tableta' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                     id="item60_7_span">Tableta</span></label>
+                            <label id="item60_8_label"><input type="radio" name="antibiotico_pres<%=num%>" id="item60_8_radio"
+                                                              value="pildora" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].presentacion == 'pildora' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                     id="item60_8_span">P&iacute;ldora</span></label>
+                            <label id="item60_9_label"><input type="radio" name="antibiotico_pres<%=num%>" id="item60_9_radio"
+                                                              value="gragea" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].presentacion == 'gragea' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                    id="item60_9_span">Gragea</span></label>
+                            <label id="item60_10_label"><input type="radio" name="antibiotico_pres<%=num%>"
+                                                               id="item60_10_radio"
+                                                               value="p_cubierta_enterica" <%= typeof tratamientos !='undefined' && typeof tratamientos[num] !='undefined' && tratamientos[num].presentacion == 'p_cubierta_enterica' ? 'checked' : '' %>/><span class="fb-fieldlabel"
+                                                                                                  id="item60_10_span">P&iacute;ldora con cubierta ent&eacute;rica</span></label>
+                        </div>
+                    </div>
+                    <div id="item63" class="fb-item">
+                        <div class="fb-sectionbreak">
+                            <hr style="max-width: 960px;">
+                        </div>
+                    </div>
+                    <div id="item64" class="fb-item">
+                        <div class="fb-sectionbreak">
+                            <hr style="max-width: 960px;">
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+
+            <div id="item66" class="fb-item fb-100-item-column">
+                <div class="fb-header">
+                    <h2 style="display: inline;">
+                        Observaciones / Comentarios
+                    </h2>
+                </div>
+            </div>
+            <div id="item62" class="fb-item fb-100-item-column">
+                <div class="fb-grouplabel">
+                    <label id="item62_label_0" style="display: none;"></label>
+                </div>
+                <div class="fb-textarea">
+			<textarea style="resize: none; max-width: 960px;" id="item62_textarea_1"
+                      maxlength="10000" placeholder="" data-hint="" name="observaciones" ><%= typeof tratamientos!='undefined' ? tratamientos[1].observaciones : '' %></textarea>
+                </div>
+            </div>
+        </div>
+        <div id="fb-submit-button-div" class="fb-footer fb-item-alignment-center"
+             style="min-height: 0px; background-color: rgb(247, 178, 247);">
+            <input type="submit" class="btn btn-default" id="fb-submit-button"
+                   style="margin-top: 17px; background-color: rgb(212, 89, 212); font-family: Helvetica, Arial; border-width: 0px;"
+                   data-valign="middle" value="Guardar"/>
+        </div>
+</form>
+
+<script src="/js/fValid.js"></script>

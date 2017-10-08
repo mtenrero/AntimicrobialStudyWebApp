@@ -1,0 +1,66 @@
+<% layout('layout')%>
+<div class="panel panel-default" id="docContainer">
+    <div class="panel-heading">
+        <h2 class="panel-title">Caso: <%- perro.nombre %> <%- "(Clínica " %><%- clinica.zip %><%- ")" %></h2>
+    </div>
+    <div class="panel-body">
+
+        <!-- DATOS DEL PERRO -->
+        <div class="alert alert-danger" role="alert">
+            <h3><b>Nombre: </b><%- perro.nombre %>
+                <span class="label label-danger"><%- "Nació el: "%><%- moment(perro.edad, "yyyy-mm-dd").format("DD/MM/YYYY") %></span>
+            </h3>
+            <span class="label label-default"><%- perro.sexo %></span>
+            &nbsp <span class="label label-default"><%- moment(tratamientos[0].fecha, "yyyy-mm-dd").diff(perro.edad, "years") %> <%- " años "%>
+                <%- moment(tratamientos[0].fecha, "yyyy-mm-dd").diff(perro.edad, "months") % 12 %> <%- " meses (en la fecha del tratamiento)"%></span>
+            &nbsp <span class="label label-default"><%- "Raza: "%><%- perro.raza %></span>
+            &nbsp <span class="label label-default"> <%- perro.peso %><%- " kg"%></span>
+        </div>
+
+        <!-- DIAGNÓSTICO -->
+        <div class="alert alert-warning" role="alert">
+            <h3><b>Diagnóstico: </b></h3>
+            <p><%- diagnostico.diagnostico %></p>
+            <br><h4><b>Información de consulta: </b></h4>
+            <p>Antibiograma: <%- diagnostico.abiograma == 1 ? "SI" : "NO" %></p>
+            <p>Cultivo: <%- diagnostico.cultivo == 1 ? "SI" : "NO" %></p>
+            <p>Fiebre: <%- diagnostico.fiebre == 1 ? "SI" : "NO" %></p>
+            <br><h4><b>Otras pruebas: </b></h4>
+            <p><%- diagnostico.otras_pruebas %></p>
+
+        </div>
+
+        <!-- TRATAMIENTOS -->
+        <% if(tratamientos) { %>
+        <% tratamientos.forEach(function(tratamiento) { %>
+        <li href="#" class="list-group-item">
+            <h3><b><span class="label label-default">Tratamiento: <%- tratamiento.pactivo %> <%- "(" %> <%- tratamiento.ncomercial %> <%- ")"%> <%- tratamiento.concentracion %> </span> </b><span class="label label-danger">
+                    <%- moment(tratamientos[0].fecha, "yyyy-mm-dd").format("DD/MM/YYYY") %>
+                </span></h3>
+            <span class="label label-warning"><%- tratamiento.tipo %></span>
+            <span class="label label-warning"><%- tratamiento.procedencia %></span>
+            <span class="label label-warning"><%- tratamiento.via %></span>
+            <span class="label label-warning"><%- tratamiento.tipo_receta_emitida == 'n_comercial' ? 'Nombre Comercial' : 'Principio Activo' %></span>
+
+            <h4><%- "<b>Administración: </b> " %></h4>
+            <h5><%- "<b>Dispensación: </b> " %>
+                <span class="label label-success"><%- tratamiento.dispensacion %></span>
+                para administrar en: <span class="label label-success"> <%- tratamiento.administracion %></span></h5>
+            <h5><%- "<b>Presentación: </b> " %><span class="label label-success"><%- tratamiento.presentacion %></span></h5>
+            <h5><%- "<b>Dosis: </b> " %><span class="label label-success"><%- tratamiento.cantidad_mgkg %> <%- " mg/kg" %> </span></h5>
+            <h5><%- "<b>Posología: </b> " %><span class="label label-success"><%- tratamiento.posologia %><%- tratamiento.unidades %>
+                    <%- " cada" %> <%- tratamiento.repeticiones %><%- " durante " %><%- tratamiento.duracion %></span></h5>
+
+            <h4><%- "<b>Observaciones: </b> " %></h4>
+            <p><%- tratamiento.observaciones %></p>
+
+
+        </li>
+        <% }) %>
+        <% } %>
+
+
+    </div>
+
+
+</div>

@@ -1,0 +1,100 @@
+<% layout('layout') %>
+<% if(clinicas && zip == 0) { %>
+<div class="panel panel-default" id="docContainer">
+    <div class="panel-heading">
+        <h3 class="panel-title">Añadir nueva clínica</h3>
+    </div>
+    <div class="panel-body">
+        <form action="/clinica/nueva" method="post" id="formNewClinica">
+
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Nombre:</span>
+                <input name="nombre" type="text" class="form-control" placeholder="Introduzca nombre de la nueva clínica" aria-describedby="basic-addon1">
+                <br>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Dirección:</span>
+                <input name="direccion" type="text" class="form-control" placeholder="Introduzca dirección de la nueva clínica" aria-describedby="basic-addon1">
+                <br>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Código postal:</span>
+                <input name="zip" type="text" class="form-control" placeholder="Introduzca el CP de la nueva clínica" aria-describedby="basic-addon1">
+                <br>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">E-mail:</span>
+                <input name="email" type="text" class="form-control" placeholder="Introduzca e-mail de la nueva clínica" aria-describedby="basic-addon1">
+                <br>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Teléfono:</span>
+                <input name="telefono" type="text" class="form-control" placeholder="Introduzca el teléfono de la nueva clínica" aria-describedby="basic-addon1">
+                <br>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Fecha visita:</span>
+                <input name="fecha_clinica" type="text" class="form-control" placeholder="Introduzca la fecha de visita de la clinica" aria-describedby="basic-addon1">
+                <br>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Notas:</span>
+                <input name="notas" type="text" class="form-control" placeholder="Notas..." aria-describedby="basic-addon1">
+                <br>
+            </div>
+
+            <div align="center">
+                <input class="btn btn-primary" type="submit" value="Añadir">
+            </div>
+        </form>
+    </div>
+</div>
+<% } %>
+
+
+<div class="panel panel-default" id="docContainer">
+    <div class="panel-heading">
+        <h3 class="panel-title">Listado de clínicas</h3>
+    </div>
+    <div class="panel-body">
+
+        <div id="clinica_list">
+            <ul class="list-group">
+                <% if(clinicas && zip == 0) { %>
+                <% clinicas.forEach(function(clinicas) { %>
+                <li href="#" class="list-group-item">
+                    <span class="badge casos"><a href='<%- "/clinica/"%><%- clinicas.id %>' >VER CASOS</a></span>
+                    <span class="badge editar"><a href='<%- "/clinica/editar/"%><%- clinicas.id %>' >EDITAR</a></span>
+                    <span class="badge">ESTADO: <%= clinicas.estado %></span>
+                    <h4 class="list-group-item-heading"><%- clinicas.zip %></h4>
+                    <h5 class="list-group-item-heading"><%- clinicas.nombre %></h5>
+                    <h6 class="list-group-item-heading"><%- moment(clinicas.fecha_visita, "yyyy-mm-dd").format("DD/MM/YYYY") %></h6>
+                    <h6 class="list-group-item-heading"></h6>
+                </li>
+                <% }) %>
+                <% } %>
+
+                <% if(clinicas && zip != 0) { %>
+                <% clinicas.forEach(function(clinicas) { %>
+                    <% if (clinicas.zip == zip) { %>
+                    <li href="#" class="list-group-item">
+                        <span class="badge casos"><a href='<%- "/clinica/"%><%- clinicas.id %>' >VER / AÑADIR CASOS</a></span>
+                        <h4 class="list-group-item-heading"><%- clinicas.zip %></h4>
+                        <h5 class="list-group-item-heading"><%- clinicas.nombre %></h5>
+                    </li>
+                    <% } %>
+                <% }) %>
+                <% } %>
+
+
+            </ul>
+        </div>
+
+    </div>
+
+
+</div>

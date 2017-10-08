@@ -1,0 +1,18 @@
+[
+    {
+        "username": "admin",
+        "password": "adminPassword",
+        "zip": 0,
+        "id": 1
+    },
+    {   "username": "admin2",
+        "password": "admin2Password",
+        "zip": 0,
+        "id": 2
+    },
+    {   "username": "limitedUser",
+        "password": "limitedUserPassword",
+        "zip": 28015,
+        "id": 3
+    }
+]
