@@ -6,38 +6,38 @@ This WebApp used in antimicrobials resistance study in veterinary medicine in th
 ![Screenshot2](readme/screenshot3.png)
 ![Screenshot2](readme/screenshot4.png)
 
-## Description
+## Description
 
 This webApp is developed for store clinical data of animals who had treatments with antimicrobial medicines in a mySQL/MariaDB relational database. 
 
-### Data Storage
+### Data Storage
 
 An area or ZIP code should be entered in order to store data of the animals, because they are intended to be related with a specific area code. Later, you can start to collect the data using the forms. 
 
-## Technical Information
+## Technical Information
 
-### Tech
+### Tech
 
-This webApp is made with nodeJS, Express, Sequelize and CofeeScript as monolithic application due to its simplicity
+This webApp is made with nodeJS, Express, Sequelize and CofeeScript as traditional monolithic application due to its simplicity.
 
-### User Handling
+### User Handling
 
 You can add/remove users from a JSON configuration file placed in ./authentication/userfile.json
 
 The users can be restricted to view only a specified zip data if the zip is greater than 0 or they also can be admins and view the entire data collection if they are configured with the zip 0.
 
-### DB Structure
+### DB Structure
 
 Clinica -> Perro (1:N) -> Diagnostico (1:1) -> Tratamiento (1:N)
 
-## Current Errors / Improvements planned
+## Current Errors / Improvements planned
 
     * Update a registry is buggy, so they could not be updated correctly
     * Multiple request can cause to store the entry twice
     * There aren't a delete button for an entry
     * Responsive UI
 
-NOTE: Feel free to open an Issue or make a PR if you solve something or of you have some improvements.
+NOTE: Feel free to open an Issue or make a PR if you solve something or if you have some improvements.
 
 
 ## Deployment
